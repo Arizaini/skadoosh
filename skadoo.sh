@@ -27,9 +27,9 @@ installstuff(){
     # VENDOREDIT
     if [ "$HUTIYA" != "nope" ]; then
 
-        # Check if repo is installed
+        # Check if user has repo, if not install it
         if [ $( which repo ) == "" ]; then
-          echo "Installing repo for Downloading the sources"
+          echo "Installing repo for downloading the sources"
           sudo apt install repo
         fi
 
@@ -46,7 +46,7 @@ installstuff(){
         fi
 
         # Check if user has wput, if not install it
-        if [ $( which wput )  == "" ]; then
+        if [ $( which wput ) == "" ]; then
           echo "Installing wput for uploading"
           sudo apt install wput
         fi
@@ -56,12 +56,12 @@ installstuff(){
 }
 
 checkstarttime(){
-
     # Check the starting time
     TIME_START=$(date +%s.%N)
 
     # Show the starting time
     echo -e "Starting time:$(echo "$TIME_START / 60" | bc) minutes $(echo "$TIME_START" | bc) seconds"
+
 }
 
 checkfinishtime(){
@@ -71,10 +71,10 @@ checkfinishtime(){
     # Show the ending time
     echo -e "Ending time:$(echo "$TIME_END / 60" | bc) minutes $(echo "$TIME_END" | bc) seconds"
 
-    # Show total time taken to upoload
+    # Show total time taken to upload
     echo -e "Total time elapsed:$(echo "($TIME_END - $TIME_START) / 60" | bc) minutes $(echo "$TIME_END - $TIME_START" | bc) seconds"
-}
 
+}
 
 doshallow(){
 
@@ -82,7 +82,7 @@ doshallow(){
 
     cd $DIR; mkdir -p $ROMNAME/shallow; cd $ROMNAME/shallow
 
-    repo init -u $LINK -b $BRANCH --depth 1 -q
+    repo init -u $LINK -b $BRANCH --depth=1 -q
 
     THREAD_COUNT_SYNC=32
 
@@ -134,7 +134,7 @@ dofull(){
     THREAD_COUNT_SYNC=32
 
     # Sync it up!
-    time repo sync -c -f --force-sync -q --no-clone-bundle --no-tags -j$THREAD_COUNT_SYNC
+    time repo sync -c -f -q --force-sync --no-clone-bundle --no-tags -j$THREAD_COUNT_SYNC
 
     echo -e $CL_CYN"FULL | Syncing done. Moving and compressing."$CL_RST
 
@@ -187,7 +187,6 @@ sortshallow(){
     echo -e $CL_PFX"Done sorting."$CL_RST
 
     # Md5s
-
     echo -e $CL_PFX"Taking md5sums"
 
     cd $DIR/$ROMNAME/upload/$ROMNAME/$BRANCH/shallow
@@ -211,7 +210,6 @@ sortfull(){
     echo -e $CL_PFX"Done sorting."$CL_RST
 
     # Md5s
-
     echo -e $CL_PFX"Taking md5sums"
 
     cd $DIR/$ROMNAME/upload/$ROMNAME/$BRANCH/full
@@ -229,8 +227,8 @@ upload(){
     echo -e $CL_XOS"Done uploading."$CL_RST
 
 }
-# Do All The Stuff
 
+# Do All The Stuff
 doallstuff(){
     # Start the counter
     checkstarttime
@@ -246,8 +244,8 @@ doallstuff(){
 
     # End the timer
     checkfinishtime
-}
 
+}
 
 # So at last do everything
 doallstuff

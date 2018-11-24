@@ -24,7 +24,7 @@ For uploading sources:
 
 Originally, we have had a "Ask on the thread, we'll try" approach to how things work. This is changing now.
 While this worked good enough for those asking for the sources, the people who did the actual work were overburdened. Frankly, the process was pretty sketchy.
-We personally faced the burden part when there were about 6 or 7 ROMs to do! 
+We personally faced the burden part when there were about 6 or 7 ROMs to do!
 We actually forgot about one guy who made the request earliest, which kinda sucked.
 Going forward, this is being changed now.
 
